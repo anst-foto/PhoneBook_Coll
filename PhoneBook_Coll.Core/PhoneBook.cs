@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace PhoneBook_Coll.Core;
 
@@ -13,21 +14,18 @@ public class PhoneBook
 
     public bool TryAdd(Person person, string phoneNumber)
     {
-        foreach (var phones in _phoneBook.Values)
+        if (_phoneBook.Values.Any((phones) => phones.Any((phone) => phone == phoneNumber)))
         {
-            foreach (var phone in phones)
-            {
-                if (phone == phoneNumber) return false;
-            }
+            return false;
         }
         
-        if (_phoneBook.ContainsKey(person))
+        if (_phoneBook.TryGetValue(person, out var value))
         {
-            _phoneBook[person].Add(phoneNumber);
+            value.Add(phoneNumber);
             return true;
         }
         
-        _phoneBook.Add(person, new List<string> {phoneNumber});
+        _phoneBook.Add(person, [phoneNumber]);
         return true;
     }
 }
