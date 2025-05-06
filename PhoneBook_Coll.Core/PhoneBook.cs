@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PhoneBook_Coll;
+namespace PhoneBook_Coll.Core;
 
 public class PhoneBook
 {
