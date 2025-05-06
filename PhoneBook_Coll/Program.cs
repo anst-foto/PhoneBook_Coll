@@ -7,7 +7,7 @@ var phoneBook = File.Exists("phonebook.json")
     ? PhoneBook.LoadFromFile("phonebook.json") 
     : new PhoneBook();
 
-var actions = new Dictionary<string, Procedure>()
+var actions = new Dictionary<string,Action>()
 {
     {"1", () =>
     {
@@ -71,5 +71,3 @@ while (true)
     var choice = Console.ReadLine();
     actions[choice]();
 }
-
-public delegate void Procedure();
